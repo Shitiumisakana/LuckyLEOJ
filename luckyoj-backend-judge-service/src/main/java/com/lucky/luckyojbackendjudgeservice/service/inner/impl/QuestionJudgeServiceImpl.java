@@ -16,12 +16,7 @@ import org.springframework.stereotype.Service;
 import java.util.Collections;
 import java.util.List;
 
-/**
- * @author: 小飞的电脑
- * @Date: 2023/10/8 - 10 - 08 - 16:53
- * @Description: com.lucky.luckyojbackendjudgeservice.service.inner.impl
- * @version: 1.0
- */
+
 @Service
 @Slf4j
 public class QuestionJudgeServiceImpl implements QuestionJudgeService {

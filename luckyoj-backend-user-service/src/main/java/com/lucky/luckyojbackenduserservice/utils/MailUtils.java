@@ -4,6 +4,7 @@ package com.lucky.luckyojbackenduserservice.utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.stereotype.Component;
 
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
@@ -13,12 +14,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Properties;
 
-/**
- * @author: 小飞的电脑
- * @Date: 2023/6/10 - 06 - 10 - 17:40
- * @Description: com.itheima.reggie.utils
- * @version: 1.0
- */
+@Component
 public class MailUtils {
 
     @Autowired
