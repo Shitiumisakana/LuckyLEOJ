@@ -2,69 +2,18 @@ package com.lucky.luckyojbackenduserservice.utils;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Component;
 
-import javax.mail.*;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-import java.util.Properties;
 
 @Component
 public class MailUtils {
 
     @Autowired
     JavaMailSender javaMailSender;
-
-//    // 发送邮件验证码
-//    public static void sendTestMail(String email, String code) {
-//        // 1.创建Properties 用于记录邮箱的一些操作
-//        Properties pros = new Properties();
-//        // 1.1 表示SMTP发送邮件，必须进行身份验证
-//        pros.put("mail.smtp.auth", "true");
-//        // 1.2 此处填写SMTP服务器
-//        pros.put("mail.smtp.host", "smtp.qq.com");
-//        // 1.3 端口号，QQ邮箱端口25
-//        pros.put("mail.smtp.port", "25");
-//        // 1.4 此处填写，写信人的账号
-//        pros.put("mail.user", "815845992@qq.com");
-//        // 1.5 此处填写16位STMP口令
-//        pros.put("mail.password", "jtptljlmzrqybdff");
-//
-//        // 2.构建授权信息，用于进行SMTP进行身份验证
-//        Authenticator authenticator = new Authenticator() {
-//            @Override
-//            protected PasswordAuthentication getPasswordAuthentication() {
-//                // 2.1 用户名
-//                String userName = pros.getProperty("mail.user");
-//                // 2.2 16位STMP口令
-//                String password = pros.getProperty("mail.password");
-//                return new javax.mail.PasswordAuthentication(userName, password);
-//            }
-//        };
-//
-//        // 3.使用环境属性和授权信息，创建邮件会话
-//        Session mailSession = Session.getInstance(pros, authenticator);
-//        // 4.创建邮件消息对象
-//        MimeMessage message = new MimeMessage(mailSession);
-//        // 4.1 设置发件人
-//        InternetAddress from = new InternetAddress(pros.getProperty("mail.user"));
-//        message.setFrom(from);
-//        // 4.2 设置收件人
-//        InternetAddress to = new InternetAddress(email);
-//        message.setRecipient(Message.RecipientType.TO, to);
-//        // 4.3 设置邮件标题
-//        message.setSubject("【LuckyOJ判题系统】邮箱登录验证码");
-//        // 4.4 设置邮件的正文
-//        message.setContent("尊敬的用户：您好！\r\n您的登录验证码为：" + code + "（有效期为一分钟，请勿告知他人）", "text/html;charset=UTF-8");
-//
-//        // 5.最后，发送邮件
-//        Transport.send(message);
-//    }
 
     // 获取六位随机验证码
     public static String getCode() {

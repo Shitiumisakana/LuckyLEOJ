@@ -13,42 +13,9 @@ import java.net.URLEncoder;
 
 /**
  * Cos 对象存储操作
- *
  */
 @Component
 public class CosManager {
-//
-//    @Resource
-//    private CosClientConfig cosClientConfig;
-//
-//    @Resource
-//    private COSClient cosClient;
-//
-//    /**
-//     * 上传对象
-//     *
-//     * @param key 唯一键
-//     * @param localFilePath 本地文件路径
-//     * @return
-//     */
-//    public PutObjectResult putObject(String key, String localFilePath) {
-//        PutObjectRequest putObjectRequest = new PutObjectRequest(cosClientConfig.getBucket(), key,
-//                new File(localFilePath));
-//        return cosClient.putObject(putObjectRequest);
-//    }
-//
-//    /**
-//     * 上传对象
-//     *
-//     * @param key 唯一键
-//     * @param file 文件
-//     * @return
-//     */
-//    public PutObjectResult putObject(String key, File file) {
-//        PutObjectRequest putObjectRequest = new PutObjectRequest(cosClientConfig.getBucket(), key,
-//                file);
-//        return cosClient.putObject(putObjectRequest);
-//    }
 
     @Resource
     private OSS ossClient;
@@ -59,7 +26,6 @@ public class CosManager {
     @Value("${aliyun.oss.bucketName}")
     private String bucketName;
 
-
     /**
      * 上传到OSS服务器 如果同名文件会覆盖服务器上的
      *
@@ -68,17 +34,14 @@ public class CosManager {
      * @return 出错返回"" ,唯一MD5数字签名
      */
     public String uploadFile2OSS(InputStream instream, String fileName) {
-
         String ret = "";
         try {
-            // 创建上传Object的Metadata
             ObjectMetadata objectMetadata = new ObjectMetadata();
             objectMetadata.setContentLength(instream.available());
             objectMetadata.setCacheControl("no-cache");
             objectMetadata.setHeader("Pragma", "no-cache");
             objectMetadata.setContentType(getContentType(fileName.substring(fileName.lastIndexOf("."))));
             objectMetadata.setContentDisposition("attachment; filename=" + URLEncoder.encode(fileName, "UTF-8"));
-            // 上传文件
             PutObjectResult putResult = ossClient.putObject(bucketName, fileName, instream, objectMetadata);
             ret = putResult.getETag();
         } catch (IOException e) {
@@ -94,7 +57,6 @@ public class CosManager {
         }
         return "https://" + bucketName + "." + endpoint + "/" + fileName;
     }
-
 
     /**
      * Description: 判断OSS服务文件上传时文件的contentType
@@ -133,18 +95,4 @@ public class CosManager {
         }
         return "application/octet-stream";
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }
