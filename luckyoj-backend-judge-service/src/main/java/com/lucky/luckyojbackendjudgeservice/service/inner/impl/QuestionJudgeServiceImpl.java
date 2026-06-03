@@ -82,8 +82,6 @@ public class QuestionJudgeServiceImpl implements QuestionJudgeService {
         log.info("6. 最终封装对象: {}", questionRunResult);
         log.info("==================================");
 
-        System.out.println("沙箱执行完成");
-
         return questionRunResult;
     }
 }
